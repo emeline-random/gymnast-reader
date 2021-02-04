@@ -3,6 +3,6 @@ import sys
 
 if __name__ == '__main__':
     subprocess.call(['java', '-jar',
-                     'C:/Users/mimin/IdeaProjects/GymnastReader/release/GymnastReader.jar',
-                     '-s', 'C:/Users/mimin/IdeaProjects/GymnastReader/release/GymnastReader.txt'] +
+                     'C:/path/to/jar/file/GymnastReader.jar',
+                     '-s', 'C:/path/to/default/save/file/GymnastReader.txt'] +
                     sys.argv[1:])
