@@ -10,7 +10,7 @@ When you launch the application without any argument, it will try to load the la
 |-s path  |Allows to change the file where the last consulted files are loaded and saved |
 |-h -\-help | Allows to show a quick explaination about the application |
 
-###Installation
+### Installation
 It is possible to directly use the jar to launch the application with the options defined above but it is also posible to construct an .exe file (to set this application as default on Windows). To do this you have to update the content of the file `release/gymnastPdfLauncher.py` with the appropriate paths. Then you can construct an .exe file from the python file using pyinstaller :
 > pyinstaller -\-onefile -\-icon=path/to/GymnastReader.ico path/to/gymnastPdfLauncher.py
 
