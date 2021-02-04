@@ -1,7 +1,7 @@
 # gymnast-reader
 Java application that allows to see and edit PDF files using. It is also possible to merge multiple PDF files into one new file and to split a pdf into multiple parts. This application uses [IcePdf](http://www.icesoft.org/java/downloads/icepdf-downloads.jsf), [iTextPdf](https://github.com/itext/itextpdf) and [FlatLaf](https://github.com/JFormDesigner/FlatLaf)
 
-###Options
+### Options
 When you launch the application without any argument, it will try to load the last files you have opened from a file named `gymnastReader.txt` in the same place the application is executed from. If you give the name of a file, the application will open this file.
 > java -jar GymnastReader.jar [options] [file]
 
