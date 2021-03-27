@@ -10,7 +10,6 @@ import greader.view.tabview.MergeTabView;
 import greader.view.tabview.PdfTabView;
 import greader.view.tabview.SplitTabView;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -18,26 +17,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
 
-public class MainFrame extends JFrame implements ParentComponent {
-
+public class GymnastReaderPanel extends JPanel implements ParentComponent {
     private final ClosableTabbedPane mainPanel = new ClosableTabbedPane();
 
-    public MainFrame() {
-        super("Gymnast Reader");
-        try {
-            this.setIconImage(ImageIO.read(getClass().getResourceAsStream("/resources/GymnastReader.png")));
-        } catch (IOException ignored) {
-        }
+    public GymnastReaderPanel(JFrame parent) {
         this.createMenu();
-        this.setSize(1500, 800);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.mainPanel.addTab("Home", new HomeTabView(this), false);
         this.add(mainPanel);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        addWindowListener(new WindowAdapter() {
+        parent.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 LoadData.persistFiles();

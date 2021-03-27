@@ -95,7 +95,7 @@ public class MergeTabView extends JPanel {
     }
 
     private File getFile(boolean open) {
-        JFileChooser chooser = new JFileChooser(".");
+        JFileChooser chooser = new JFileChooser();
         chooser.addChoosableFileFilter(new FileNameExtensionFilter("pdfs", "pdf"));
         chooser.setMultiSelectionEnabled(false);
         if (open) chooser.showOpenDialog(this);

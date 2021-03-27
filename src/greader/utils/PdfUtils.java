@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class PdfUtils {
 
     public static Document mergePdfs(ArrayList<File> filesToMerge, String path) throws IOException, DocumentException {
-        Document document = new com.itextpdf.text.Document();
+        Document document = new Document();
         PdfCopy copy = new PdfCopy(document, new FileOutputStream(path.endsWith(".pdf") ? path : path + ".pdf"));
         document.setPageSize(PageSize.A4);
         document.open();

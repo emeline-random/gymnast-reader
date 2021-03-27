@@ -6,6 +6,7 @@ import com.formdev.flatlaf.icons.FlatTreeCollapsedIcon;
 import com.formdev.flatlaf.icons.FlatTreeOpenIcon;
 import greader.model.LoadData;
 import greader.view.MainFrame;
+import greader.view.ParentComponent;
 import greader.view.renderer.ClosableTabbedPane;
 import greader.view.renderer.LinkedLabel;
 import greader.view.renderer.RoundRectPanel;
@@ -19,9 +20,9 @@ import java.util.ArrayList;
 public class HomeTabView extends JPanel {
 
     private final ClosableTabbedPane tabbedPane;
-    private final MainFrame frame;
+    private final ParentComponent frame;
 
-    public HomeTabView(MainFrame frame) {
+    public HomeTabView(ParentComponent frame) {
         super(new FlowLayout());
         this.frame = frame;
         this.tabbedPane = frame.getMainPanel();

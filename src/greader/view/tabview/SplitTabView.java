@@ -50,7 +50,7 @@ public class SplitTabView extends JPanel {
 
     private void addListener(JLabel output, JButton browse1, AtomicReference<File> out) {
         browse1.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser(".");
+            JFileChooser chooser = new JFileChooser();
             chooser.setFileFilter(new FileNameExtensionFilter("pdf files", "pdf"));
             chooser.setMultiSelectionEnabled(false);
             chooser.showOpenDialog(this);
