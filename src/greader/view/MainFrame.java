@@ -23,6 +23,7 @@ import java.io.IOException;
 public class MainFrame extends JFrame implements ParentComponent {
 
     private final ClosableTabbedPane mainPanel = new ClosableTabbedPane();
+    private File file = null;
 
     public MainFrame() {
         super("Gymnast Reader");
@@ -90,12 +91,15 @@ public class MainFrame extends JFrame implements ParentComponent {
 
     public ActionListener getOpenAction() {
         return e -> {
-            JFileChooser chooser = new JFileChooser(".");
+            JFileChooser chooser;
+            if (file != null) chooser = new JFileChooser(file);
+            else chooser = new JFileChooser();
             chooser.setFileFilter(new FileNameExtensionFilter("pdfs", "pdf"));
             chooser.setMultiSelectionEnabled(true);
             chooser.showOpenDialog(this);
             for (File f : chooser.getSelectedFiles()) {
                 this.mainPanel.addTab(f.getName(), PdfTabView.getView(f.getPath()));
+                file = f;
             }
         };
     }

@@ -10,6 +10,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class SplitTabView extends JPanel {
 
+    private File file = null;
+
     public SplitTabView(JTabbedPane tabbedPane) {
         JLabel file = new JLabel("        ");
         JLabel dest = new JLabel("        ");
@@ -50,13 +52,16 @@ public class SplitTabView extends JPanel {
 
     private void addListener(JLabel output, JButton browse1, AtomicReference<File> out) {
         browse1.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser();
+            JFileChooser chooser;
+            if (file == null) chooser = new JFileChooser();
+            else chooser = new JFileChooser(file);
             chooser.setFileFilter(new FileNameExtensionFilter("pdf files", "pdf"));
             chooser.setMultiSelectionEnabled(false);
             chooser.showOpenDialog(this);
             if (chooser.getSelectedFile() != null) {
                 out.set(chooser.getSelectedFile());
                 output.setText(out.get().getAbsolutePath());
+                file = chooser.getSelectedFile();
             }
         });
     }

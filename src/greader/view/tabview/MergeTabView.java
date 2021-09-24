@@ -20,7 +20,8 @@ import java.util.concurrent.atomic.AtomicReference;
 public class MergeTabView extends JPanel {
 
     private final JTabbedPane tabbedPane;
-    
+    private File reader = null;
+
     public MergeTabView(JTabbedPane pane) {
         this.tabbedPane = pane;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -45,12 +46,16 @@ public class MergeTabView extends JPanel {
         this.add(new JScrollPane(table));
         this.add(Box.createVerticalStrut(20));
 
-        JButton add = new JButton("add pdf file");
+        JButton add = new JButton("add pdf file(s)");
         add.setIcon(new FlatFileChooserNewFolderIcon());
         add.setAlignmentX(CENTER_ALIGNMENT);
         add.addActionListener(e -> {
-            File f = this.getFile(true);
-            if (f!= null) flm.addFile(f);
+            for (File f : getFiles()) {
+                if (f != null) {
+                    flm.addFile(f);
+                    reader = f;
+                }
+            }
         });
         this.add(add);
         this.add(Box.createVerticalStrut(20));
@@ -94,13 +99,25 @@ public class MergeTabView extends JPanel {
         this.add(merge);
     }
 
+    private File[] getFiles() {
+        JFileChooser chooser;
+        if (reader == null) chooser = new JFileChooser();
+        else chooser = new JFileChooser(reader);
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("pdfs", "pdf"));
+        chooser.setMultiSelectionEnabled(true);
+        chooser.showOpenDialog(this);
+        return chooser.getSelectedFiles();
+    }
+
     private File getFile(boolean open) {
-        JFileChooser chooser = new JFileChooser();
+        JFileChooser chooser;
+        if (reader == null) chooser = new JFileChooser();
+        else chooser = new JFileChooser(reader);
         chooser.addChoosableFileFilter(new FileNameExtensionFilter("pdfs", "pdf"));
         chooser.setMultiSelectionEnabled(false);
         if (open) chooser.showOpenDialog(this);
         else chooser.showSaveDialog(this);
         return chooser.getSelectedFile();
     }
-    
+
 }
